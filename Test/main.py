@@ -14,19 +14,29 @@ button = Pin("G17", Pin.IN, pull=Pin.PULL_UP)
 
 #LED blinking
 while(button.value()): # leave loop after button click
-    pycom.rgbled(0x7f7f00) # yellow
+    pycom.rgbled(0x9400D3) 
     time.sleep(0.2)
-    pycom.rgbled(0x7f0000) # red
+    pycom.rgbled(0x4B0082) 
     time.sleep(0.2)
-    pycom.rgbled(0x007f00) # green
+    pycom.rgbled(0x0000FF) 
     time.sleep(0.2)
+    pycom.rgbled(0x00FF00) 
+    time.sleep(0.2)
+    pycom.rgbled(0xFFFF00) 
+    time.sleep(0.2)
+    pycom.rgbled(0xFF7F00) 
+    time.sleep(0.2)
+    pycom.rgbled(0xFF0000) 
+    time.sleep(0.2)
+
+pycom.rgbled(0) # turn off the LED    
     
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
 #print({binascii.hexlify(sigfox.id())})
 #print({binascii.hexlify(sigfox.pac())})
 
-i=10
+i=0
 
 try:
     # create a Sigfox socket
@@ -44,15 +54,18 @@ try:
 
     #send some bytes & blink LED  
     while(True): 
+        time.sleep(5)
+        
         #send bytes
         pycom.rgbled(0x007f00) # green
-        print("payload=", bytes([i]))
-        s.send(bytes([i]))
+        print("payload=", i)
+        input=s.send(bytes([i]))
+        print(input)
         i=(i+1)%16
         pycom.rgbled(0) # turn off the LED        
-        time.sleep(10) # 615 if up to 140 messages per day
         
-    pycom.rgbled(0x7f0000) # red
+        time.sleep(5) 
+
 
     #print("bytes sent!")
     
@@ -65,6 +78,7 @@ try:
     #print("DOWNLINK message should have been recvd")
 
 except Exception as e:
+    pycom.rgbled(0x7f0000) # red
     print("Error: "+e)
 
 finally:
