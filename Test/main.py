@@ -1,19 +1,18 @@
+### Thinxtra Pycom SiPy test ###
+
 from network import Sigfox
 from machine import Pin
-#import binascii
 import socket
 import pycom
 import time
+#import binascii
 #import os
-
-# Disable the heartbeat led
-pycom.heartbeat(False)
 
 # initialize GP17 in gpio mode and make it an input with the pull-up enabled
 button = Pin("G17", Pin.IN, pull=Pin.PULL_UP)
 
-#LED blinking
-while(button.value()): # leave loop after button click
+# Wait until button click - LED blinking
+while(button.value()):
     pycom.rgbled(0x9400D3) 
     time.sleep(0.2)
     pycom.rgbled(0x4B0082) 
@@ -29,7 +28,8 @@ while(button.value()): # leave loop after button click
     pycom.rgbled(0xFF0000) 
     time.sleep(0.2)
 
-pycom.rgbled(0) # turn off the LED    
+# turn off the LED  
+pycom.rgbled(0)  
     
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
@@ -65,9 +65,6 @@ try:
         pycom.rgbled(0) # turn off the LED        
         
         time.sleep(5) 
-
-
-    #print("bytes sent!")
     
     # await DOWNLINK message
     #print("await DOWNLINK message...")
@@ -84,4 +81,3 @@ except Exception as e:
 finally:
     # close socket
     s.close()
-    #print("socket closed!")
