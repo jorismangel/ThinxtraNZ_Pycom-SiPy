@@ -1,5 +1,4 @@
 ### Thinxtra Pycom SiPy test ###
-
 from network import Sigfox
 from machine import Pin
 import socket
@@ -8,24 +7,19 @@ import time
 #import binascii
 #import os
 
+# Disable the heartbeat led
+pycom.heartbeat(False)
+ 
 # initialize GP17 in gpio mode and make it an input with the pull-up enabled
 button = Pin("G17", Pin.IN, pull=Pin.PULL_UP)
 
 # Wait until button click - LED blinking
 while(button.value()):
-    pycom.rgbled(0x9400D3) 
+    pycom.rgbled(0x220B68) 
     time.sleep(0.2)
-    pycom.rgbled(0x4B0082) 
+    pycom.rgbled(0x5B1EC3) 
     time.sleep(0.2)
-    pycom.rgbled(0x0000FF) 
-    time.sleep(0.2)
-    pycom.rgbled(0x00FF00) 
-    time.sleep(0.2)
-    pycom.rgbled(0xFFFF00) 
-    time.sleep(0.2)
-    pycom.rgbled(0xFF7F00) 
-    time.sleep(0.2)
-    pycom.rgbled(0xFF0000) 
+    pycom.rgbled(0x1EAFBB) 
     time.sleep(0.2)
 
 # turn off the LED  
@@ -37,6 +31,7 @@ sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
 #print({binascii.hexlify(sigfox.pac())})
 
 i=0
+j=0
 
 try:
     # create a Sigfox socket
@@ -58,10 +53,11 @@ try:
         
         #send bytes
         pycom.rgbled(0x007f00) # green
-        print("payload=", i)
-        input=s.send(bytes([i]))
-        print(input)
+        print("payload: i=", i, "j=", j)
+        input=s.send(bytes([i, j]))
+        print("nb bytes sent: ", input,  "\n") #number of bytes sent
         i=(i+1)%16
+        j=j+1
         pycom.rgbled(0) # turn off the LED        
         
         time.sleep(5) 
