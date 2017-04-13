@@ -16,16 +16,13 @@ This example does the following:
 - After press, send a message requesting downlink and display answer
 - Loop: Send an uplink message every 10 seconds with 2 counters as payload
 
-Send a Sigfox message
 
--UPLINK only:
+Send a Sigfox message:
+
+- UPLINK only:
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
-
-# print device ID and PAC
-print({binascii.hexlify(sigfox.id())})
-print({binascii.hexlify(sigfox.pac())})
 
 # create a Sigfox socket
 s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
@@ -40,14 +37,10 @@ s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
 s.send("Hello world")
 ```
 
--DOWNLINK requested:
+- DOWNLINK requested:
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
-
-# print device ID and PAC
-print({binascii.hexlify(sigfox.id())})
-print({binascii.hexlify(sigfox.pac())})
 
 # create a Sigfox socket
 s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)

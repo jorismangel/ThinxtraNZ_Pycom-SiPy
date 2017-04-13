@@ -76,7 +76,7 @@ try:
     # Send hello message
     print("Payload sent: hello")
     pycom.rgbled(0x007f00) # LED green
-    input=s.send("hello")
+    input = s.send("hello")
     pycom.rgbled(0) # Turn off the LED        
     print("Nb bytes sent: ", input,  "\n") # Number of bytes sent
         
@@ -97,11 +97,11 @@ try:
         # Send bytes
         print("Payload sent: i=", i, "j=", j)
         pycom.rgbled(0x007f00) # LED green
-        input=s.send(bytes([i, j]))
+        input = s.send(bytes([i, j]))
         pycom.rgbled(0) # Turn off the LED        
         print("Nb bytes sent: ", input,  "\n") # Number of bytes sent
-        i=(i+1)%16
-        j=(j+1)%256
+        i = (i+1)%16
+        j = (j+1)%256
         
         time.sleep(5)
 
