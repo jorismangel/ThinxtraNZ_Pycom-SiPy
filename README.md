@@ -10,6 +10,12 @@ The aim of this project is to perform some tests on Pycom SiPy using Thinxtra's 
 
 ## Code Example
 
+This example does the following:
+- Print device firmware, ID and PAC (original one)
+- Wait the user to press button on expansion board and LED blinking
+- After press, send a message requesting downlink and display answer
+- Loop: Send an uplink message every 10 seconds with 2 counters as payload
+
 Send a Sigfox message
 
 -UPLINK only:
