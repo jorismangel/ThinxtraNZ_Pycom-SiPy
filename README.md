@@ -2,24 +2,37 @@
 
 ## Synopsis
 
-Sample Code for the Pycom SiPy.
+Sample Codes for the Pycom SiPy.
 A way to get started with Sigfox, the devkit SiPy boasts a full suite of features and accessories to empower anyone to set up an IoT solution, even with very little hardware experience.
 
 Thinxtra is a Sigfox operator based on Australia/NZ/HK.
 The aim of this project is to perform some tests on Pycom SiPy using Thinxtra's Sigfox network.
 
-## Code Example
-
-This example does the following:
-- Print device firmware, ID and PAC (original one)
-- Wait the user to press button on expansion board and LED blinking
-- After press, send a message requesting downlink and display answer
-- Loop: Send an uplink message every 10 seconds with 2 counters as payload
+Thinxtra website: http://www.thinxtra.com
+Pycom documentation: https://docs.pycom.io/pycom_esp32/index.html
 
 
-Send a Sigfox message:
+## Code Examples
 
-- UPLINK only:
+### Project descriptions
+
+#### Test_lib and Test_nolib
+* Print device firmware, ID and PAC (original one)
+* Wait the user to press button on expansion board and LED blinking
+* After press, send a message requesting downlink and display answer
+* Loop: Send an uplink message every 10 seconds with 2 counters as payload
+
+#### Temperature_DS18X20
+* Using temperature sensor DS18X20
+* Get temperature every 2 seconds
+
+#### Distance_detection_2Y0A21
+* Using distance detection sensor 2Y0A21
+* Get distance every second
+
+### Send a Sigfox message:
+
+* **UPLINK only**:
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
@@ -37,7 +50,7 @@ s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
 s.send("Hello world")
 ```
 
-- DOWNLINK requested:
+* **DOWNLINK requested**:
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
