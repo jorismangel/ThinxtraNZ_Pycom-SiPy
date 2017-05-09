@@ -8,7 +8,7 @@ A way to get started with Sigfox, the devkit SiPy boasts a full suite of feature
 Thinxtra is a Sigfox operator based on Australia/NZ/HK.
 The aim of this project is to perform some tests on Pycom SiPy using Thinxtra's Sigfox network.
 
-Thinxtra website: http://www.thinxtra.com
+Thinxtra website: http://www.thinxtra.com.
 Pycom documentation: https://docs.pycom.io/pycom_esp32/index.html
 
 

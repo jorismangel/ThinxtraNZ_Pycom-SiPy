@@ -14,6 +14,7 @@ import os
 
 class SigfoxLib():
 
+    ### On object creation, define zone
     def __init__(self, zone):
         # Define Zone
         if zone == "RCZ1":
@@ -40,6 +41,7 @@ class SigfoxLib():
         self.received_mes = ""
 
 
+    ### Proint firmware, lib content, ID and PAC
     def print_device_info(self):
         # Print device firmware and library included on flash
         print("Device firmware: ",  os.uname().release)
@@ -49,7 +51,7 @@ class SigfoxLib():
         print("Device ID: ",  {binascii.hexlify(self.sigfox.id())})
         print("Device PAC ",  {binascii.hexlify(self.sigfox.pac())},  "\n")
 
-
+    ### Create socket and set UPLINK by default
     def init_com(self):
         # Create a Sigfox socket
         self.s = socket.socket(socket.AF_SIGFOX, socket.SOCK_RAW)
@@ -61,12 +63,12 @@ class SigfoxLib():
         self.s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
         self.mode = 1
 
-
+    ### Close socket
     def close_com(self):
         # Close socket
         self.s.close()
 
-
+    ### Set sending mode to DOWNLINK or UPLINK
     def set_sending_mode(self, mode):
         # Define sending mode UPLINK or DOWNLINK
         if mode == "DOWNLINK":
@@ -84,6 +86,8 @@ class SigfoxLib():
             self.s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
             self.mode = 1
 
+
+    ### Send SIGFOX message
     def send_message(self, message):
         # Send message depending on mode UPLINK or DOWNLINK
 
@@ -105,5 +109,7 @@ class SigfoxLib():
             pycom.rgbled(0) # Turn off the LED
             print("Nb bytes sent: ", input,  "\n") # Number of bytes sent
 
+
+    ### Get message received by DOWNLOAD
     def get_lastrcvd_message(self):
         return self.received_mes
