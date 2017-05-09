@@ -32,7 +32,8 @@ Pycom documentation: https://docs.pycom.io/pycom_esp32/index.html
 
 ### Send a Sigfox message:
 
-* **UPLINK only**:
+**UPLINK only:**
+
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
@@ -50,7 +51,8 @@ s.setsockopt(socket.SOL_SIGFOX, socket.SO_RX, False)
 s.send("Hello world")
 ```
 
-* **DOWNLINK requested**:
+**DOWNLINK requested:**
+
 ```python
 # init Sigfox for RCZ4 (Austrlia/NZ)
 sigfox = Sigfox(mode=Sigfox.SIGFOX, rcz=Sigfox.RCZ4)
