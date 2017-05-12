@@ -10,7 +10,6 @@
 from sigfox import SigfoxLib
 from machine import Pin
 import time
-import binascii
 import pycom
 
 
@@ -53,6 +52,7 @@ sigfox = SigfoxLib(zone="RCZ4")
 try:
     # Init Sigfox communication
     sigfox.init_com()
+    sigfox.print_device_info()
 
     # First message requests DOWNLINK
     print("DOWNLINK MESSAGE...")

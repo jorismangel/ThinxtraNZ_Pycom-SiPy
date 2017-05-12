@@ -11,6 +11,7 @@ from network import Sigfox
 import pycom
 import socket
 import os
+import binascii
 
 class SigfoxLib():
 
